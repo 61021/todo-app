@@ -12,5 +12,10 @@ declare module 'vue' {
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheInput: typeof import('./src/components/TheInput.vue')['default']
+    VInput: typeof import('./src/components/VInput.vue')['default']
+    VSidebar: typeof import('./src/components/sidebar/VSidebar.vue')['default']
+    VSidebarItem: typeof import('./src/components/sidebar/VSidebarItem.vue')['default']
+    VSidebarSubItem: typeof import('./src/components/sidebar/VSidebarSubItem.vue')['default']
+    VThemeSwitcher: typeof import('./src/components/VThemeSwitcher.vue')['default']
   }
 }
