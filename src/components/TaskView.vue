@@ -5,12 +5,12 @@ const props = defineProps<{
   tasks: Task[]
 }>()
 
-const { cloned } = useCloned(props.tasks)
+const computedClone = computed(() => JSON.parse(JSON.stringify(props.tasks)) as Task[])
 
-const sortedByDesDateTasks = computed(() => sortByDate(cloned.value, true))
-const sortedByAscDateTasks = computed(() => sortByDate(cloned.value, false))
-const sortedByDesPriorityTasks = computed(() => sortByPriority(cloned.value, true))
-const sortedByAscPriorityTasks = computed(() => sortByPriority(cloned.value, false))
+const sortedByDesDateTasks = computed(() => sortByDate(computedClone.value, true))
+const sortedByAscDateTasks = computed(() => sortByDate(computedClone.value, false))
+const sortedByDesPriorityTasks = computed(() => sortByPriority(computedClone.value, true))
+const sortedByAscPriorityTasks = computed(() => sortByPriority(computedClone.value, false))
 
 const sortedBy = ref<'date' | 'priority'>('date')
 const isDescending = ref(false)
