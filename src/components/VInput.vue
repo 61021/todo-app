@@ -20,7 +20,7 @@ const priorityClasses = ref({
 })
 
 function togglePriority() {
-  priority.value = (priority.value >= 3) ? 0 : priority.value + 1
+  priority.value = (priority.value >= 3) ? 0 : priority.value + 1 as Priority
 }
 
 function handleEnter() {
@@ -53,7 +53,7 @@ onStartTyping(() => {
     bg="dark:slate800 slate200"
     border="rounded-full"
     items="center wfull"
-    class="group h12 wfull"
+    class="group wfull min-h-12 max-h-12"
   >
     <input
       ref="input"

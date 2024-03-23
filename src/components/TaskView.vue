@@ -66,7 +66,7 @@ function getGroupedTasks(): { title: 'todo' | 'done', tasks: Task[] }[] {
       />
       Back
     </RouterLink>
-    <VInput />
+    <VInput class="hfull" />
 
     <VFlexRow
       :gap="3"
