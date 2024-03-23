@@ -63,7 +63,7 @@ onStartTyping(() => {
       class="wfull overflow-hidden"
       autofocus
       text="dark:white slate900 placeholder:slate500"
-      placeholder="+ Add a task..."
+      placeholder="Add a task... press enter to save."
       bg="transparent"
       outline="none active:none"
       @keyup.enter="() => handleEnter()"
