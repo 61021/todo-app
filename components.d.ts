@@ -12,10 +12,17 @@ declare module 'vue' {
     TheCounter: typeof import('./src/components/TheCounter.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheInput: typeof import('./src/components/TheInput.vue')['default']
+    VCheckAnimated: typeof import('./src/components/icons/VCheckAnimated.vue')['default']
+    VCheckbox: typeof import('./src/components/VCheckbox.vue')['default']
+    VFlexCol: typeof import('./src/components/layout/VFlexCol.vue')['default']
+    VFlexRow: typeof import('./src/components/layout/VFlexRow.vue')['default']
+    VGrid: typeof import('./src/components/layout/VGrid.vue')['default']
+    VIconCheckAnimated: typeof import('./src/components/icons/VIconCheckAnimated.vue')['default']
     VInput: typeof import('./src/components/VInput.vue')['default']
-    VSidebar: typeof import('./src/components/sidebar/VSidebar.vue')['default']
+    VSidebar: typeof import('./src/components/VSidebar.vue')['default']
     VSidebarItem: typeof import('./src/components/sidebar/VSidebarItem.vue')['default']
     VSidebarSubItem: typeof import('./src/components/sidebar/VSidebarSubItem.vue')['default']
+    VTask: typeof import('./src/components/VTask.vue')['default']
     VThemeSwitcher: typeof import('./src/components/VThemeSwitcher.vue')['default']
   }
 }
