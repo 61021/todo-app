@@ -8,7 +8,7 @@ function shake() {
   }, 500)
 }
 
-setInterval(shake, 10000)
+onKeyStroke('s', shake)
 </script>
 
 <template>
