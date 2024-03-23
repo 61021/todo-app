@@ -1,3 +1,6 @@
 <template>
-  <RouterView />
+  <VFlexRow :gap="32">
+    <VSidebar />
+    <RouterView />
+  </VFlexRow>
 </template>

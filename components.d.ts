@@ -19,6 +19,7 @@ declare module 'vue' {
     VGrid: typeof import('./src/components/layout/VGrid.vue')['default']
     VIconCheckAnimated: typeof import('./src/components/icons/VIconCheckAnimated.vue')['default']
     VInput: typeof import('./src/components/VInput.vue')['default']
+    VLogo: typeof import('./src/components/VLogo.vue')['default']
     VSidebar: typeof import('./src/components/VSidebar.vue')['default']
     VSidebarItem: typeof import('./src/components/sidebar/VSidebarItem.vue')['default']
     VSidebarSubItem: typeof import('./src/components/sidebar/VSidebarSubItem.vue')['default']

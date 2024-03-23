@@ -9,7 +9,7 @@ const { play } = useSound(switchSound)
 </script>
 
 <template>
-  <VIconButton @click="toggleDark(), play()">
+  <button flex @click="toggleDark(), play()">
     <Transition
       name="slide"
       mode="out-in"
@@ -17,15 +17,15 @@ const { play } = useSound(switchSound)
       <i
         v-if="isDark"
         i-ph-moon-stars-duotone
-        text="primary lg"
+        text="primary xl"
       />
       <i
         v-else
         i-ph-sun-duotone
-        text="yellow lg"
+        text="yellow xl"
       />
     </Transition>
-  </VIconButton>
+  </button>
 </template>
 
 <style scoped>

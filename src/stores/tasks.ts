@@ -1,10 +1,20 @@
 import type { Task } from '~/types/main'
+import { exampleTask } from '~/data'
 
 export const useTaskStore = defineStore('task', () => {
-  const tasks = ref<Task[]>([])
+  const tasks = ref<Task[]>([
+    exampleTask,
+  ])
 
   function addTask(task: Task) {
-    tasks.value.push(task)
+    tasks.value.unshift(task)
+  }
+
+  function editTaskTitle(id: number, title: string) {
+    const index = tasks.value.findIndex(task => task.id === id)
+
+    if (index !== -1)
+      tasks.value[index].title = title
   }
 
   function trashTask(id: number) {
@@ -33,7 +43,7 @@ export const useTaskStore = defineStore('task', () => {
   }
 
   onMounted(() => {
-    const storedTasks = localStorage.getItem('tasks') ?? '[]'
+    const storedTasks = localStorage.getItem('tasks') ?? JSON.stringify(tasks.value)
 
     tasks.value = JSON.parse(storedTasks)
   })
@@ -42,10 +52,16 @@ export const useTaskStore = defineStore('task', () => {
     localStorage.setItem('tasks', JSON.stringify(tasks.value))
   })
 
+  onKeyStroke('d', () => {
+    localStorage.setItem('tasks', JSON.stringify([exampleTask]))
+    tasks.value = [exampleTask]
+  })
+
   return {
     tasks,
     addTask,
     deleteTask,
+    editTaskTitle,
     trashTask,
     completeTask,
     unCompleteTask,

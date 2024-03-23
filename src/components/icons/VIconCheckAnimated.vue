@@ -23,7 +23,7 @@
       />
       <circle
         id="white-circle"
-        fill="#FFFFFF"
+        class="fill-slate900"
         cx="66.5"
         cy="66.5"
         r="55.5"
@@ -38,7 +38,7 @@
       />
       <polyline
         id="check"
-        stroke="#FFFFFF"
+        class="stroke-white"
         stroke-width="5.5"
         points="41 70 56 85 92 49"
       />

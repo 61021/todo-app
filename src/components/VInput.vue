@@ -5,38 +5,62 @@ const { addTask } = useTaskStore()
 
 const { tasks } = storeToRefs(useTaskStore())
 
-function generateId() {
-  return Math.max(...tasks.value.map(task => task.id)) + 1 ?? 1
-}
+const nextId = computed(() => Math.max(...tasks.value.map(task => task.id)) + 1 ?? 1)
 
 function handleEnter() {
   if (model?.value?.trim() === '')
     return
 
   addTask({
-    id: generateId(),
+    id: nextId.value,
     title: model.value!,
     priority: null,
     status: 'todo',
+    creationDate: new Date().toISOString(),
   })
   model.value = ''
 }
 </script>
 
 <template>
-  <input
-    id="input"
-    v-model="model"
-    type="text"
-    v-bind="$attrs"
-    border="~ rounded-full slate200 dark:slate700 focus:emerald500"
-    class="h11 w100 overflow-hidden"
-    p="x4 y2"
+  <VFlexRow
+    p="x4"
     bg="dark:slate800 white"
-    autofocus
-    text="dark:white slate900 placeholder:sm placeholder:slate400"
-    placeholder="Add a task..."
-    outline="none active:none"
-    @keyup.enter="() => handleEnter()"
+    border="rounded-full"
+    items="center wfull"
+    class="group h12 wfull"
   >
+    <input
+      id="input"
+      v-model="model"
+      type="text"
+      v-bind="$attrs"
+      class="wfull overflow-hidden"
+      autofocus
+      text="dark:white slate900 placeholder:sm placeholder:slate400"
+      placeholder="+ Add a task..."
+      bg="transparent"
+      outline="none active:none"
+      @keyup.enter="() => handleEnter()"
+    >
+
+    <VFlexRow
+      :gap="2"
+      :class="isEmpty(model?.trim()) ? 'opacity-0' : 'opacity-100'"
+      class="duration-300"
+    >
+      <button
+        i-ph-dots-three-circle
+        class="duration-300"
+        text="2xl slate400 hover:primary-500"
+      />
+
+      <button
+        i-ph-plus-circle
+        class="duration-300"
+        text="2xl slate400 hover:primary-500"
+        @click="handleEnter"
+      />
+    </VFlexRow>
+  </VFlexRow>
 </template>

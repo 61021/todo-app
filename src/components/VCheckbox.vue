@@ -1,26 +1,39 @@
 <script setup lang="ts">
-// const props = defineProps<{
-//   modelValue?: any
-// }>()
+const props = defineProps<{
+  modelValue?: any
+}>()
 
-// const emit = defineEmits(['update:modelValue'])
-
-const value = defineModel()
+const emit = defineEmits(['update:modelValue'])
 </script>
 
 <template>
-  <button
-    v-if="value"
-    text="2xl emerald500"
-    type="button"
-    i-ph-check-circle-duotone
-    @click="value = !value"
-  />
-  <button
-    v-else
-    text="2xl dark:slate200"
-    type="button"
-    i-ph-circle-duotone
-    @click="value = !value"
-  />
+  <Transition name="fade">
+    <VIconCheckAnimated
+      v-if="props.modelValue"
+      flex
+      class="h7 w7"
+      @click="emit('update:modelValue', !props.modelValue)"
+    />
+    <button
+      v-else
+      text="dark:slate200 hover:primary-500"
+
+      class="h7 w7 flex duration-500 active:scale-125"
+      type="button"
+      i-ph-circle-duotone
+      @click="emit('update:modelValue', !props.modelValue)"
+    />
+  </Transition>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

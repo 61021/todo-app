@@ -6,6 +6,7 @@ export interface Task {
   title: string
   status: Status
   description?: string
+  creationDate: string
   date?: string
   priority?: Priority
 }
