@@ -18,7 +18,7 @@ const routes = ref<RouteItem[]>([
       active: 'i-ph-stack-fill',
       inactive: 'i-ph-stack-duotone',
     },
-    count: computed(() => tasks.value.filter((task) => task.status !== 'trashed' && task.status !== 'wontdo').length),
+    count: computed(() => tasks.value.filter(task => task.status !== 'trashed' && task.status !== 'wontdo').length),
   },
   {
     name: 'Today',
@@ -82,9 +82,18 @@ function textActiveClasses(item: RouteItem) {
 
 const firstThreeRoutes = computed(() => routes.value.slice(0, 3))
 const lastThreeRoutes = computed(() => routes.value.slice(3))
+
+const isSearchVisible = ref(false)
+function toggleSearch() {
+  isSearchVisible.value = !isSearchVisible.value
+}
 </script>
 
 <template>
+  <SearchMenu
+    v-if="isSearchVisible"
+    @exit="isSearchVisible = false"
+  />
   <aside
     flex="~"
     class="full"
@@ -105,7 +114,10 @@ const lastThreeRoutes = computed(() => routes.value.slice(3))
         <VLogo />
 
         <button i-ph-check-square-fill text="xl dark:white slate900" />
-        <button i-ph-magnifying-glass-duotone text="xl dark:white slate900" />
+        <button
+          i-ph-magnifying-glass-duotone text="xl dark:white slate900"
+          @click="toggleSearch"
+        />
       </VFlexCol>
       <VThemeSwitcher />
     </VFlexCol>
