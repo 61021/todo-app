@@ -34,11 +34,12 @@ onMounted(() => {
       class="rounded-full"
       bg="dark:slate800 slate300"
       p="y2 x4"
-      border="~ dark:slate700"
+      border="~ dark:slate700 slate400"
       :gap="2"
     >
       <button
-        i-ph-magnifying-glass-duotone text="xl dark:white slate900"
+        i-ph-magnifying-glass-duotone
+        text="xl dark:white slate900 hover:primary-500"
         @click="search()"
       />
       <input

@@ -136,7 +136,9 @@ watchImmediate(isMobile, (val) => {
           <VLogo />
 
           <button
-            i-ph-magnifying-glass-duotone text="xl dark:white slate900"
+            i-ph-magnifying-glass-duotone
+            text="xl dark:white slate900 hover:primary500"
+            class="duration-300"
             @click="toggleSearch"
           />
         </VFlexCol>
