@@ -31,7 +31,7 @@ const isDone = computed(() => props.task.status === 'done')
     bg="dark:hover:slate700 dark:slate800 slate200 hover:slate100"
     class="group h12 rounded-full"
     px="4"
-    :gap="1"
+    :gap="2"
     :class="isDone ? 'opacity70' : ''"
   >
     <VFlexRow
@@ -69,8 +69,8 @@ const isDone = computed(() => props.task.status === 'done')
 
       <input
         text="slate900 dark:white"
-        bg="transparent dark:hover:slate800 hover:slate300 "
-        class="h-full wfull rounded-full duration-300"
+        bg="transparent dark:hover:slate800 hover:slate200 "
+        class="h-full wfull rounded-xl duration-300"
         p="x2 y1"
         outline="none active:none"
         :class="isDone ? 'line-through' : 'no-underline'"

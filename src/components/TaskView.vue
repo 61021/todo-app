@@ -75,21 +75,23 @@ function getGroupedTasks(): { title: 'todo' | 'done', tasks: Task[] }[] {
     >
       <button
         class="cursor-pointer rounded-full duration-300"
-        :bg="sortedBy === 'date' ? 'primary' : 'slate300 hover:slate200 dark:slate800 dark:hover:slate700'"
-        p="x4 y2"
+        :bg="sortedBy === 'date' ? 'slate400 dark:slate600' : 'slate300 hover:slate200 dark:slate800 dark:hover:slate700'"
+        p="x4 y1"
         gap="1"
         items="center"
         text="slate800 dark:white"
+        :class="sortedBy === 'date' ? 'font-bold' : ''"
         @click="sortedBy = 'date'"
         v-text="'Date'"
       />
       <button
         class="cursor-pointer rounded-full duration-300"
-        :bg="sortedBy === 'priority' ? 'primary' : 'slate300 hover:slate200 dark:slate800 dark:hover:slate700'"
-        p="x4 y2"
+        :bg="sortedBy === 'priority' ? 'slate400 dark:slate600' : 'slate300 hover:slate200 dark:slate800 dark:hover:slate700'"
+        p="x4 y1"
         gap="1"
         items="center"
         text="slate800 dark:white"
+        :class="sortedBy === 'priority' ? 'font-bold' : ''"
         @click="sortedBy = 'priority'"
         v-text="'Priority'"
       />
