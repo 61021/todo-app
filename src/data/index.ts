@@ -30,5 +30,5 @@ export const exampleTask: Task = {
   Submit your code along with a brief explanation of your implementation choices and any challenges
   faced.`,
   status: 'todo',
-  creationDate: new Date().toISOString(),
+  creationDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
 }

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import type { Task } from '~/types/main'
 import { exampleTask } from '~/data'
 
@@ -5,6 +6,12 @@ export const useTaskStore = defineStore('task', () => {
   const tasks = ref<Task[]>([
     exampleTask,
   ])
+
+  const todayTasks = computed(() => tasks.value.filter(task => dayjs(task.creationDate).isSame(dayjs(), 'day') && task.status !== 'trashed' && task.status !== 'wontdo'))
+  const thisWeekTasks = computed(() => tasks.value.filter(task => dayjs(task.creationDate).isSame(dayjs(), 'week') && task.status !== 'trashed' && task.status !== 'wontdo'))
+  const completedTasks = computed(() => tasks.value.filter(task => task.status === 'done'))
+  const trashedTasks = computed(() => tasks.value.filter(task => task.status === 'trashed'))
+  const wontDoTasks = computed(() => tasks.value.filter(task => task.status === 'wontdo'))
 
   function addTask(task: Task) {
     tasks.value.unshift(task)
@@ -17,29 +24,29 @@ export const useTaskStore = defineStore('task', () => {
       tasks.value[index].title = title
   }
 
-  function trashTask(id: number) {
+  function toggleTrashTask(id: number) {
     const task = tasks.value.find(task => task.id === id)
 
     if (task)
-      task.status = 'trashed'
+      task.status = task.status === 'trashed' ? 'todo' : 'trashed'
+  }
+
+  function toggleWontDoTask(id: number) {
+    const task = tasks.value.find(task => task.id === id)
+
+    if (task)
+      task.status = task.status === 'wontdo' ? 'todo' : 'wontdo'
   }
 
   function deleteTask(id: number) {
     tasks.value = tasks.value.filter(task => task.id !== id)
   }
 
-  function completeTask(id: number) {
+  function toggleCompleteTask(id: number) {
     const task = tasks.value.find(task => task.id === id)
 
     if (task)
-      task.status = 'done'
-  }
-
-  function unCompleteTask(id: number) {
-    const task = tasks.value.find(task => task.id === id)
-
-    if (task)
-      task.status = 'todo'
+      task.status = task.status === 'done' ? 'todo' : 'done'
   }
 
   onMounted(() => {
@@ -59,12 +66,18 @@ export const useTaskStore = defineStore('task', () => {
 
   return {
     tasks,
+    todayTasks,
+    thisWeekTasks,
+    completedTasks,
+    trashedTasks,
+    wontDoTasks,
+
     addTask,
     deleteTask,
     editTaskTitle,
-    trashTask,
-    completeTask,
-    unCompleteTask,
+    toggleCompleteTask,
+    toggleTrashTask,
+    toggleWontDoTask,
 
   }
 })

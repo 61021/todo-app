@@ -17,12 +17,12 @@ const { play } = useSound(switchSound)
       <i
         v-if="isDark"
         i-ph-moon-stars-duotone
-        text="primary xl"
+        text="primary500 xl"
       />
       <i
         v-else
         i-ph-sun-duotone
-        text="yellow xl"
+        text="yellow500 xl"
       />
     </Transition>
   </button>

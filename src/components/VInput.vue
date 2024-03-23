@@ -20,24 +20,31 @@ function handleEnter() {
   })
   model.value = ''
 }
+
+const input = ref<HTMLInputElement | null>(null)
+
+onStartTyping(() => {
+  if (input.value)
+    input.value.focus()
+})
 </script>
 
 <template>
   <VFlexRow
     p="x4"
-    bg="dark:slate800 white"
+    bg="dark:slate800 slate200"
     border="rounded-full"
     items="center wfull"
     class="group h12 wfull"
   >
     <input
-      id="input"
+      ref="input"
       v-model="model"
       type="text"
       v-bind="$attrs"
       class="wfull overflow-hidden"
       autofocus
-      text="dark:white slate900 placeholder:sm placeholder:slate400"
+      text="dark:white slate900 placeholder:slate500"
       placeholder="+ Add a task..."
       bg="transparent"
       outline="none active:none"

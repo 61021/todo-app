@@ -23,7 +23,7 @@
       />
       <circle
         id="white-circle"
-        class="fill-slate900"
+        class="dark:fill-slate900 fill-slate200"
         cx="66.5"
         cy="66.5"
         r="55.5"

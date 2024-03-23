@@ -1,6 +1,10 @@
 <template>
-  <VFlexRow :gap="32">
+  <VFlexRow
+    class="hscreen"
+  >
     <VSidebar />
-    <RouterView />
+    <RouterView
+      class="px64"
+    />
   </VFlexRow>
 </template>
