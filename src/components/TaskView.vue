@@ -5,13 +5,9 @@ const props = defineProps<{
   tasks: Task[]
 }>()
 
-const todoTasks = computed(() => props.tasks
-  .filter(task => task.status === 'todo')
-  .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()))
+const todoTasks = computed(() => props.tasks.filter(task => task.status === 'todo'))
 
-const doneTasks = computed(() => props.tasks
-  .filter(task => task.status === 'done')
-  .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()))
+const doneTasks = computed(() => props.tasks.filter(task => task.status === 'done'))
 
 const lists = computed<{
   title: 'todo' | 'done'
@@ -48,13 +44,11 @@ const isQuery = computed(() => route.query.q as string | undefined)
     <VFlexCol
       v-if="lists.some(list => list.tasks.length > 0)"
       class="hfull wfull overflow-hidden overflow-y-auto"
-      items="center"
       :gap="8"
     >
       <VFlexCol
         v-for="list in lists.filter(list => list.tasks.length > 0)"
         :key="list.title"
-        class="relative hfull wfull"
         :gap="4"
       >
         <span
@@ -84,7 +78,7 @@ const isQuery = computed(() => route.query.q as string | undefined)
 .tasks-move,
 .tasks-enter-active,
 .tasks-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .tasks-enter-from,
