@@ -51,7 +51,7 @@ onStartTyping(() => {
   <VFlexRow
     p="x4"
     bg="dark:slate800 slate200"
-    border="rounded-full"
+    border="rounded-2xl"
     items="center wfull"
     class="group wfull min-h-12 max-h-12"
   >

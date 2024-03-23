@@ -31,7 +31,7 @@ onMounted(() => {
   >
     <VFlexRow
       ref="container"
-      class="rounded-full"
+      class="rounded-2xl"
       bg="dark:slate800 slate300"
       p="y2 x4"
       border="~ dark:slate700 slate400"

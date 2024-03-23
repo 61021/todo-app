@@ -175,9 +175,9 @@ watchImmediate(isMobile, (val) => {
             v-for="route in routesList"
             :key="route.path"
             :to="route.path"
-            class="wfull rounded-full duration-300"
+            class="wfull rounded-xl duration-300"
             bg="dark:hover:slate-900 hover:slate-200"
-            p="x4 y2"
+            p="x3 y2"
             :class="$route.path === route.path ? 'dark:bg-slate800 bg-slate300' : ''"
             flex="~ justify-between items-center"
           >

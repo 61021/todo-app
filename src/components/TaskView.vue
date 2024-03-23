@@ -69,12 +69,13 @@ function getGroupedTasks(): { title: 'todo' | 'done', tasks: Task[] }[] {
     <VInput class="hfull" />
 
     <VFlexRow
+      v-if="lists.some(list => list.tasks.length > 0)"
       :gap="3"
       items="center"
       justify="end"
     >
       <button
-        class="cursor-pointer rounded-full duration-300"
+        class="cursor-pointer rounded-xl duration-300"
         :bg="sortedBy === 'date' ? 'slate400 dark:slate600' : 'slate300 hover:slate200 dark:slate800 dark:hover:slate700'"
         p="x4 y1"
         gap="1"
@@ -85,7 +86,7 @@ function getGroupedTasks(): { title: 'todo' | 'done', tasks: Task[] }[] {
         v-text="'Date'"
       />
       <button
-        class="cursor-pointer rounded-full duration-300"
+        class="cursor-pointer rounded-xl duration-300"
         :bg="sortedBy === 'priority' ? 'slate400 dark:slate600' : 'slate300 hover:slate200 dark:slate800 dark:hover:slate700'"
         p="x4 y1"
         gap="1"

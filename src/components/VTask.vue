@@ -29,7 +29,7 @@ const isDone = computed(() => props.task.status === 'done')
     items="center"
     justify="between"
     bg="dark:hover:slate700 dark:slate800 slate200 hover:slate100"
-    class="group h12 rounded-full"
+    class="group h12 rounded-2xl"
     px="4"
     :gap="2"
     :class="isDone ? 'opacity70' : ''"
