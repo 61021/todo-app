@@ -1,14 +1,14 @@
 export type Status = 'todo' | 'done' | 'wontdo' | 'trashed'
-export type Priority = 'low' | 'medium' | 'high' | null
+export type Priority = 0 | 1 | 2 | 3
 
 export interface Task {
   id: number
   title: string
   status: Status
-  description?: string
+  priority: Priority
   creationDate: string
+  description?: string
   date?: string
-  priority?: Priority
 }
 
 export interface Prefrences {

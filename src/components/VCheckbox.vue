@@ -26,7 +26,7 @@ const { play: playUncheck } = useSound(uncheckSound)
       v-else
       text="dark:slate200 dark:hover:primary-500 slate400 hover:primary-500"
 
-      class="h7 w7 flex duration-500 active:scale-525"
+      class="h7 w7 flex duration-500 active:scale-400"
       type="button"
       i-ph-circle-duotone
       @click="emit('update:modelValue', !props.modelValue), playCheck()"

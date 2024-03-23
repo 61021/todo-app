@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import type { Task } from '~/types/main'
 
 const props = defineProps<{
@@ -11,9 +12,9 @@ const theTask = ref(props.task)
 const { toggleCompleteTask, editTaskTitle, toggleTrashTask, toggleWontDoTask, deleteTask } = useTaskStore()
 
 const priorityClasses = {
-  low: 'text-emerald500',
-  medium: 'text-amber500',
-  high: 'text-red500',
+  1: 'text-emerald500',
+  2: 'text-amber500',
+  3: 'text-red500',
 }
 
 const isDone = computed(() => theTask.value.status === 'done')
@@ -74,25 +75,24 @@ const isDone = computed(() => theTask.value.status === 'done')
       >
     </VFlexRow>
 
-    <VFlexRow :gap="2">
-      <i
-        v-if="theTask.priority"
-        i-ph-fire-duotone
-        text="2xl"
-        :class="priorityClasses[theTask.priority!]"
+    <VFlexRow :gap="2" items="center">
+      <span
+        text="xs slate400 "
+        class="min-w-max duration-300 group-hover:opacity-100 md:opacity-0"
+        v-text="dayjs(theTask.creationDate).format('HH:mm A - YYYY/MM/DD')"
       />
 
       <button
         v-if="theTask.status !== 'wontdo' && theTask.status !== 'trashed'"
         i-ph-x-circle-duotone
-        class="md:opacity-0 duration-300 group-hover:opacity-100"
+        class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:yellow500 dark:hover:yellow500"
         @click="toggleWontDoTask(theTask.id)"
       />
       <button
         v-if="theTask.status !== 'trashed'"
         i-ph-trash-duotone
-        class="md:opacity-0 duration-300 group-hover:opacity-100"
+        class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:red500 dark:hover:red500"
         @click="toggleTrashTask(theTask.id)"
       />
@@ -100,9 +100,16 @@ const isDone = computed(() => theTask.value.status === 'done')
       <button
         v-if="theTask.status === 'trashed'"
         i-ph-trash-duotone
-        class="md:opacity-0 duration-300 group-hover:opacity-100"
+        class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:red-500 dark:hover:red-500"
         @click="deleteTask(theTask.id)"
+      />
+
+      <i
+        v-if="theTask.priority"
+        i-ph-fire-duotone
+        text="2xl"
+        :class="priorityClasses[theTask.priority!]"
       />
     </VFlexRow>
   </VFlexRow>

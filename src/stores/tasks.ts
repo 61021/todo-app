@@ -12,6 +12,8 @@ export const useTaskStore = defineStore('task', () => {
   const completedTasks = computed(() => tasks.value.filter(task => task.status === 'done'))
   const trashedTasks = computed(() => tasks.value.filter(task => task.status === 'trashed'))
   const wontDoTasks = computed(() => tasks.value.filter(task => task.status === 'wontdo'))
+  const sortedByDateTasks = computed(() => tasks.value.sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()))
+  const sortedByPriorityTasks = computed(() => tasks.value.sort((a, b) => b.priority - a.priority))
 
   function addTask(task: Task) {
     tasks.value.unshift(task)
@@ -66,6 +68,9 @@ export const useTaskStore = defineStore('task', () => {
     completedTasks,
     trashedTasks,
     wontDoTasks,
+
+    sortedByDateTasks,
+    sortedByPriorityTasks,
 
     addTask,
     deleteTask,

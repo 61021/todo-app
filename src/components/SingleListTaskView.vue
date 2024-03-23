@@ -22,6 +22,7 @@ defineProps<{
         text="slate900 dark:white"
         v-text="title"
       />
+
       <TransitionGroup
         v-if="tasks.length > 0"
         name="tasks"
