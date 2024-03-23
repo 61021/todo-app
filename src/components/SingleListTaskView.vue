@@ -23,6 +23,7 @@ defineProps<{
         v-text="title"
       />
       <TransitionGroup
+        v-if="tasks.length > 0"
         name="tasks"
         tag="ul"
         class="relative hfull wfull space-y-4"
@@ -33,6 +34,8 @@ defineProps<{
           :task="task"
         />
       </TransitionGroup>
+
+      <VNoData v-else />
     </VFlexCol>
   </VFlexCol>
 </template>

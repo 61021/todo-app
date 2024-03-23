@@ -11,4 +11,5 @@ onMounted(() => {
 </script>
 
 <template>
+  Hello World
 </template>

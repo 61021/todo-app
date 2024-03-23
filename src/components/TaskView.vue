@@ -21,6 +21,9 @@ const lists = computed<{
   { title: 'todo', tasks: todoTasks.value },
   { title: 'done', tasks: doneTasks.value },
 ])
+
+const route = useRoute()
+const isQuery = computed(() => route.query.q as string | undefined)
 </script>
 
 <template>
@@ -28,9 +31,22 @@ const lists = computed<{
     class="hfull wfull py16"
     :gap="8"
   >
+    <RouterLink
+      v-if="isQuery"
+      to="/tasks/all"
+      class="absolute left-8 top-4 text-slate900 dark:text-white"
+      flex="~ gap-1 items-center"
+    >
+      <i
+        i-ph-caret-left-duotone
+        text="slate900 dark:white"
+      />
+      Back
+    </RouterLink>
     <VInput />
 
     <VFlexCol
+      v-if="lists.some(list => list.tasks.length > 0)"
       class="hfull wfull overflow-hidden overflow-y-auto"
       items="center"
       :gap="8"
@@ -60,6 +76,7 @@ const lists = computed<{
         </TransitionGroup>
       </VFlexCol>
     </VFlexCol>
+    <VNoData v-else />
   </VFlexCol>
 </template>
 

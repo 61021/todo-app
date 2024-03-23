@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root {
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
-
 
 html,
 body,
@@ -15,20 +14,19 @@ body,
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
-    height: 4px;
+  width: 2px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: #334155;
+  border-radius: 999px;
+  background: #334155;
 }
-
 
 ::-ms-scrollbar-thumb {
-    color: #888;
-    border-radius: 999px;
+  color: #888;
+  border-radius: 999px;
 }
 ::-ms-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }

@@ -26,7 +26,7 @@ const { play: playUncheck } = useSound(uncheckSound)
       v-else
       text="dark:slate200 dark:hover:primary-500 slate400 hover:primary-500"
 
-      class="h7 w7 flex duration-500 active:scale-125"
+      class="h7 w7 flex duration-500 active:scale-525"
       type="button"
       i-ph-circle-duotone
       @click="emit('update:modelValue', !props.modelValue), playCheck()"
@@ -34,7 +34,7 @@ const { play: playUncheck } = useSound(uncheckSound)
   </Transition>
 </template>
 
-<style scoped>
+<style>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

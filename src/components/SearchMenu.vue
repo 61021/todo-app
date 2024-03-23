@@ -34,6 +34,7 @@ onMounted(() => {
       class="rounded-full"
       bg="dark:slate800"
       p="y2 x4"
+      border="~ dark:slate700"
     >
       <VFlexRow :gap="2">
         <button

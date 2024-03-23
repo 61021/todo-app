@@ -23,6 +23,7 @@ declare module 'vue' {
     VIconCheckAnimated: typeof import('./src/components/icons/VIconCheckAnimated.vue')['default']
     VInput: typeof import('./src/components/VInput.vue')['default']
     VLogo: typeof import('./src/components/VLogo.vue')['default']
+    VNoData: typeof import('./src/components/VNoData.vue')['default']
     VSidebar: typeof import('./src/components/VSidebar.vue')['default']
     VSidebarItem: typeof import('./src/components/sidebar/VSidebarItem.vue')['default']
     VSidebarSubItem: typeof import('./src/components/sidebar/VSidebarSubItem.vue')['default']

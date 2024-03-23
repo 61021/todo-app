@@ -90,10 +90,12 @@ function toggleSearch() {
 </script>
 
 <template>
-  <SearchMenu
-    v-if="isSearchVisible"
-    @exit="isSearchVisible = false"
-  />
+  <Transition name="fade">
+    <SearchMenu
+      v-if="isSearchVisible"
+      @exit="isSearchVisible = false"
+    />
+  </Transition>
   <aside
     flex="~"
     class="full"

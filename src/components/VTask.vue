@@ -41,7 +41,7 @@ const isDone = computed(() => theTask.value.status === 'done')
         "
 
         :model-value="isDone"
-        @update:model-value="(e:boolean) => toggleCompleteTask(theTask.id)"
+        @update:model-value="() => toggleCompleteTask(theTask.id)"
       />
       <button
         v-else-if="theTask.status === 'wontdo'"

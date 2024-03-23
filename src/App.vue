@@ -4,7 +4,7 @@
   >
     <VSidebar />
     <RouterView
-      class="px64"
+      class="relative px64"
     />
   </VFlexRow>
 </template>

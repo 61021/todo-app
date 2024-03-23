@@ -59,11 +59,6 @@ export const useTaskStore = defineStore('task', () => {
     localStorage.setItem('tasks', JSON.stringify(tasks.value))
   })
 
-  onKeyStroke('d', () => {
-    localStorage.setItem('tasks', JSON.stringify([exampleTask]))
-    tasks.value = [exampleTask]
-  })
-
   return {
     tasks,
     todayTasks,
