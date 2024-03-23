@@ -1,5 +1,12 @@
 <script setup lang="ts">
-const { tasks, todayTasks, thisWeekTasks, completedTasks, trashedTasks, wontDoTasks } = storeToRefs(useTaskStore())
+const {
+  tasks,
+  todayTasks,
+  thisWeekTasks,
+  completedTasks,
+  trashedTasks,
+  wontDoTasks,
+} = storeToRefs(useTaskStore())
 
 interface RouteItem {
   name: string
@@ -10,6 +17,7 @@ interface RouteItem {
   }
   count: ComputedRef<number>
 }
+
 const routes = ref<RouteItem[]>([
   {
     name: 'All',
@@ -66,15 +74,16 @@ const routes = ref<RouteItem[]>([
     count: computed(() => wontDoTasks.value.length),
   },
 ])
+
 const currentRoute = useRoute()
 
-function iconActiveClasses(item: RouteItem) {
+function iconActiveClasses(item: RouteItem): string {
   return currentRoute.path === item.path
     ? `dark:text-white text-slate900 ${item.icon.active}`
     : `dark:text-slate400 text-slate-400 ${item.icon.inactive}`
 }
 
-function textActiveClasses(item: RouteItem) {
+function textActiveClasses(item: RouteItem): string {
   return currentRoute.path === item.path
     ? 'dark:text-white text-slate900'
     : 'dark:text-slate400 text-slate-400'
@@ -84,7 +93,8 @@ const firstThreeRoutes = computed(() => routes.value.slice(0, 3))
 const lastThreeRoutes = computed(() => routes.value.slice(3))
 
 const isSearchVisible = ref(false)
-function toggleSearch() {
+
+function toggleSearch(): void {
   isSearchVisible.value = !isSearchVisible.value
 }
 

@@ -13,7 +13,7 @@ const sortedByDesPriorityTasks = computed(() => sortByPriority(computedClone.val
 const sortedByAscPriorityTasks = computed(() => sortByPriority(computedClone.value, false))
 
 const sortedBy = ref<'date' | 'priority'>('date')
-const isDescending = ref(false)
+const isDescending = ref(true)
 
 const lists = computed(() => getGroupedTasks())
 

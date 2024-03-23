@@ -2,12 +2,13 @@
 import type { Priority } from '~/types/main'
 
 const model = defineModel<string>()
-
 const { addTask } = useTaskStore()
-
 const { tasks } = storeToRefs(useTaskStore())
 
-const nextId = computed(() => Math.max(...tasks.value.map(task => task.id)) + 1 ?? 1)
+const nextId = computed(() => {
+  const maxId = Math.max(...tasks.value.map(task => task.id))
+  return maxId >= 0 ? maxId + 1 : 1
+})
 
 const priority = ref<Priority>(0)
 
@@ -19,22 +20,22 @@ const priorityClasses = ref({
 })
 
 function togglePriority() {
-  priority.value >= 3 ? priority.value = 0 : priority.value++
+  priority.value = (priority.value >= 3) ? 0 : priority.value + 1
 }
 
 function handleEnter() {
-  if (model?.value?.trim() === '')
+  const trimmedModel = model.value?.trim()
+  if (!trimmedModel)
     return
 
   addTask({
     id: nextId.value,
-    title: model.value!,
-    priority: priority.value ?? 0,
+    title: trimmedModel,
+    priority: priority.value,
     status: 'todo',
     creationDate: new Date().toISOString(),
   })
   model.value = ''
-
   priority.value = 0
 }
 

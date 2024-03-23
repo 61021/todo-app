@@ -7,9 +7,13 @@ const props = defineProps<{
   isDone?: boolean
 }>()
 
-const theTask = ref(props.task)
-
-const { toggleCompleteTask, editTaskTitle, toggleTrashTask, toggleWontDoTask, deleteTask } = useTaskStore()
+const {
+  toggleCompleteTask,
+  editTaskTitle,
+  toggleTrashTask,
+  toggleWontDoTask,
+  deleteTask,
+} = useTaskStore()
 
 const priorityClasses = {
   1: 'text-emerald500',
@@ -17,7 +21,7 @@ const priorityClasses = {
   3: 'text-red500',
 }
 
-const isDone = computed(() => theTask.value.status === 'done')
+const isDone = computed(() => props.task.status === 'done')
 </script>
 
 <template>
@@ -37,30 +41,30 @@ const isDone = computed(() => theTask.value.status === 'done')
     >
       <VCheckbox
         v-if="
-          theTask.status !== 'wontdo'
-            && theTask.status !== 'trashed'
+          task.status !== 'wontdo'
+            && task.status !== 'trashed'
         "
 
         :model-value="isDone"
-        @update:model-value="() => toggleCompleteTask(theTask.id)"
+        @update:model-value="() => toggleCompleteTask(task.id)"
       />
       <button
-        v-else-if="theTask.status === 'wontdo'"
+        v-else-if="task.status === 'wontdo'"
         text="dark:slate200 dark:hover:primary-500 slate400 hover:primary-500"
 
         class="h7 w7 flex duration-500 active:scale-125"
         type="button"
         i-ph-x-circle-duotone
-        @click="toggleWontDoTask(theTask.id)"
+        @click="toggleWontDoTask(task.id)"
       />
       <button
-        v-else-if="theTask.status === 'trashed'"
+        v-else-if="task.status === 'trashed'"
         text="dark:slate200 dark:hover:primary-500 slate400 hover:primary-500"
 
         class="h7 w7 flex duration-500 active:scale-125"
         type="button"
         i-ph-arrow-clockwise-duotone
-        @click="toggleTrashTask(theTask.id)"
+        @click="toggleTrashTask(task.id)"
       />
 
       <input
@@ -70,8 +74,8 @@ const isDone = computed(() => theTask.value.status === 'done')
         p="x2 y1"
         outline="none active:none"
         :class="isDone ? 'line-through' : 'no-underline'"
-        :value="theTask.title"
-        @input="(e: Event) => editTaskTitle(theTask.id, e?.target?.value ?? theTask.title)"
+        :value="task.title"
+        @input="(e: Event) => editTaskTitle(task.id, e?.target?.value ?? task.title)"
       >
     </VFlexRow>
 
@@ -79,37 +83,37 @@ const isDone = computed(() => theTask.value.status === 'done')
       <span
         text="xs slate400 "
         class="min-w-max duration-300 group-hover:opacity-100 md:opacity-0"
-        v-text="dayjs(theTask.creationDate).format('HH:mm A - YYYY/MM/DD')"
+        v-text="dayjs(task.creationDate).format('HH:mm A - YYYY/MM/DD')"
       />
 
       <button
-        v-if="theTask.status !== 'wontdo' && theTask.status !== 'trashed'"
+        v-if="task.status !== 'wontdo' && task.status !== 'trashed'"
         i-ph-x-circle-duotone
         class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:yellow500 dark:hover:yellow500"
-        @click="toggleWontDoTask(theTask.id)"
+        @click="toggleWontDoTask(task.id)"
       />
       <button
-        v-if="theTask.status !== 'trashed'"
+        v-if="task.status !== 'trashed'"
         i-ph-trash-duotone
         class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:red500 dark:hover:red500"
-        @click="toggleTrashTask(theTask.id)"
+        @click="toggleTrashTask(task.id)"
       />
 
       <button
-        v-if="theTask.status === 'trashed'"
+        v-if="task.status === 'trashed'"
         i-ph-trash-duotone
         class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:red-500 dark:hover:red-500"
-        @click="deleteTask(theTask.id)"
+        @click="deleteTask(task.id)"
       />
 
       <i
-        v-if="theTask.priority"
+        v-if="task.priority"
         i-ph-fire-duotone
         text="2xl"
-        :class="priorityClasses[theTask.priority!]"
+        :class="priorityClasses[task.priority!]"
       />
     </VFlexRow>
   </VFlexRow>
