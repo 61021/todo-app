@@ -94,8 +94,8 @@ const isMobile = computed(() => width.value < 768)
 
 const isSidebarVisible = ref(true)
 
-onMounted(() => {
-  if (isMobile.value)
+watchImmediate(isMobile, (val) => {
+  if (val)
     isSidebarVisible.value = false
 })
 </script>
@@ -111,14 +111,14 @@ onMounted(() => {
   <button
     i-ph-list
     text="dark:white slate900 2xl"
-    class="fixed right-4 top-4 z2 flex md:hidden"
+    class="fixed right-4 top-4 z5 flex md:hidden"
     @click="isSidebarVisible = !isSidebarVisible"
   />
   <Transition name="slide">
     <aside
       v-if="isSidebarVisible"
       flex="~"
-      class="fixed z3 hfull md:relative"
+      class="fixed z4 hfull md:relative"
     >
       <VFlexCol
         bg="dark:slate950 slate200"

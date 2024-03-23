@@ -85,14 +85,14 @@ const isDone = computed(() => theTask.value.status === 'done')
       <button
         v-if="theTask.status !== 'wontdo' && theTask.status !== 'trashed'"
         i-ph-x-circle-duotone
-        class="opacity-0 duration-300 group-hover:opacity-100"
+        class="md:opacity-0 duration-300 group-hover:opacity-100"
         text="xl slate500 dark:slate400 hover:yellow500 dark:hover:yellow500"
         @click="toggleWontDoTask(theTask.id)"
       />
       <button
         v-if="theTask.status !== 'trashed'"
         i-ph-trash-duotone
-        class="opacity-0 duration-300 group-hover:opacity-100"
+        class="md:opacity-0 duration-300 group-hover:opacity-100"
         text="xl slate500 dark:slate400 hover:red500 dark:hover:red500"
         @click="toggleTrashTask(theTask.id)"
       />
@@ -100,7 +100,7 @@ const isDone = computed(() => theTask.value.status === 'done')
       <button
         v-if="theTask.status === 'trashed'"
         i-ph-trash-duotone
-        class="opacity-0 duration-300 group-hover:opacity-100"
+        class="md:opacity-0 duration-300 group-hover:opacity-100"
         text="xl slate500 dark:slate400 hover:red-500 dark:hover:red-500"
         @click="deleteTask(theTask.id)"
       />
