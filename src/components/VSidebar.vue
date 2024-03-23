@@ -87,6 +87,17 @@ const isSearchVisible = ref(false)
 function toggleSearch() {
   isSearchVisible.value = !isSearchVisible.value
 }
+
+const { width } = useWindowSize()
+
+const isMobile = computed(() => width.value < 768)
+
+const isSidebarVisible = ref(true)
+
+onMounted(() => {
+  if (isMobile.value)
+    isSidebarVisible.value = false
+})
 </script>
 
 <template>
@@ -96,81 +107,103 @@ function toggleSearch() {
       @exit="isSearchVisible = false"
     />
   </Transition>
-  <aside
-    flex="~"
-    class="full"
-  >
-    <VFlexCol
-      bg="dark:slate950 slate200"
-      class="w14"
-      p="y4"
-      justify="between"
-      items="center"
-      pe="1"
-      border="e dark:slate900 slate300"
+
+  <button
+    i-ph-list
+    text="dark:white slate900 2xl"
+    class="fixed right-4 top-4 z2 flex md:hidden"
+    @click="isSidebarVisible = !isSidebarVisible"
+  />
+  <Transition name="slide">
+    <aside
+      v-if="isSidebarVisible"
+      flex="~"
+      class="fixed z3 hfull md:relative"
     >
       <VFlexCol
+        bg="dark:slate950 slate200"
+        class="w14"
+        p="y4"
+        justify="between"
         items="center"
-        :gap="8"
+        pe="1"
+        border="e dark:slate900 slate300"
       >
-        <VLogo />
-
-        <button i-ph-check-square-fill text="xl dark:white slate900" />
-        <button
-          i-ph-magnifying-glass-duotone text="xl dark:white slate900"
-          @click="toggleSearch"
-        />
-      </VFlexCol>
-      <VThemeSwitcher />
-    </VFlexCol>
-
-    <VFlexCol
-      bg="dark:slate950/50 slate100"
-      class="w72"
-      p="y4"
-      justify="between"
-      items="center"
-      px="2"
-      border="e dark:slate800 slate200"
-    >
-      <VFlexCol
-        v-for="(routesList, index) in [firstThreeRoutes, lastThreeRoutes]"
-        :key="index"
-        class="wfull"
-        :gap="2"
-        p="x2"
-      >
-        <RouterLink
-          v-for="route in routesList"
-          :key="route.path"
-          :to="route.path"
-          class="wfull rounded-full duration-300"
-          p="x4 y2"
-          :class="$route.path === route.path ? 'dark:bg-slate800 bg-slate300' : ''"
-          flex="~ justify-between items-center"
+        <VFlexCol
+          items="center"
+          :gap="8"
         >
-          <VFlexRow :gap="2">
-            <i
-              text="xl"
-              :class="iconActiveClasses(route)"
-              class="duration-300"
-            />
+          <VLogo />
+
+          <button
+            i-ph-magnifying-glass-duotone text="xl dark:white slate900"
+            @click="toggleSearch"
+          />
+        </VFlexCol>
+        <VThemeSwitcher />
+      </VFlexCol>
+
+      <VFlexCol
+        bg="dark:#080e21 slate100"
+        class="w64 md:w72"
+        p="y4"
+        justify="between"
+        items="center"
+        px="2"
+        border="e dark:slate800 slate200"
+      >
+        <VFlexCol
+          v-for="(routesList, index) in [firstThreeRoutes, lastThreeRoutes]"
+          :key="index"
+          class="wfull"
+          :gap="2"
+          p="x2"
+        >
+          <RouterLink
+            v-for="route in routesList"
+            :key="route.path"
+            :to="route.path"
+            class="wfull rounded-full duration-300"
+            p="x4 y2"
+            :class="$route.path === route.path ? 'dark:bg-slate800 bg-slate300' : ''"
+            flex="~ justify-between items-center"
+          >
+            <VFlexRow :gap="2">
+              <i
+                text="xl"
+                :class="iconActiveClasses(route)"
+                class="duration-300"
+              />
+
+              <span
+                :class="textActiveClasses(route)"
+                text="dark:white darkslate900"
+                class="duration-300"
+                v-text="route.name"
+              />
+            </VFlexRow>
 
             <span
-              :class="textActiveClasses(route)"
-              text="dark:white darkslate900"
-              class="duration-300"
-              v-text="route.name"
+              v-if="tasks.length !== 0"
+              text="dark:slate500 slate400 xs"
+              v-text="route.count"
             />
-          </VFlexRow>
-
-          <span
-            v-if="tasks.length !== 0"
-            text="dark:slate500 slate400 xs"
-            v-text="route.count"
-          />
-        </RouterLink>
+          </RouterLink>
+        </VFlexCol>
       </VFlexCol>
-    </VFlexCol>
-  </aside>
+    </aside>
+  </Transition>
 </template>
+
+<style scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+</style>

@@ -29,29 +29,28 @@ onMounted(() => {
     bg="slate900/10"
     flex="~ items-center justify-center"
   >
-    <VFlexCol
+    <VFlexRow
       ref="container"
       class="rounded-full"
-      bg="dark:slate800"
+      bg="dark:slate800 slate300"
       p="y2 x4"
       border="~ dark:slate700"
+      :gap="2"
     >
-      <VFlexRow :gap="2">
-        <button
-          i-ph-magnifying-glass-duotone text="xl dark:white slate900"
-          @click="search()"
-        />
-        <input
-          ref="input"
-          v-model="query"
-          autofocus
-          text="dark:white slate900"
-          outline="none focus:none"
-          type="text"
-          bg="transparent"
-          @keyup.enter="search()"
-        >
-      </VFlexRow>
-    </VFlexCol>
+      <button
+        i-ph-magnifying-glass-duotone text="xl dark:white slate900"
+        @click="search()"
+      />
+      <input
+        ref="input"
+        v-model="query"
+        autofocus
+        text="dark:white slate900"
+        outline="none focus:none"
+        type="text"
+        bg="transparent"
+        @keyup.enter="search()"
+      >
+    </VFlexRow>
   </div>
 </template>

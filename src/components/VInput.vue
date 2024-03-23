@@ -57,12 +57,6 @@ onStartTyping(() => {
       class="duration-300"
     >
       <button
-        i-ph-dots-three-circle
-        class="duration-300"
-        text="2xl slate400 hover:primary-500"
-      />
-
-      <button
         i-ph-plus-circle
         class="duration-300"
         text="2xl slate400 hover:primary-500"
