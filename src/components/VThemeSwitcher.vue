@@ -17,7 +17,7 @@ const { play } = useSound(switchSound)
       <i
         v-if="!isDark"
         i-ph-moon-stars-duotone
-        text="primary500 xl"
+        text="cyan500 xl"
       />
       <i
         v-else
