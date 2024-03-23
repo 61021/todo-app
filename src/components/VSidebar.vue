@@ -164,6 +164,7 @@ watchImmediate(isMobile, (val) => {
             :key="route.path"
             :to="route.path"
             class="wfull rounded-full duration-300"
+            bg="dark:hover:slate-900 hover:slate-200"
             p="x4 y2"
             :class="$route.path === route.path ? 'dark:bg-slate800 bg-slate300' : ''"
             flex="~ justify-between items-center"
