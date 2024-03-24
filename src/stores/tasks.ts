@@ -1,3 +1,4 @@
+import type { OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
 import { defineStore } from 'pinia'
 import { exampleTask } from '~/data'
@@ -14,15 +15,15 @@ export const useTaskStore = defineStore('task', () => {
   const sortedByDateTasks = computed(() => sortTasks('date'))
   const sortedByPriorityTasks = computed(() => sortTasks('priority'))
 
-  function filterTasks(unit: string) {
+  function filterTasks(unit: OpUnitType) {
     return tasks.value.filter(task => dayjs(task.creationDate).isSame(dayjs(), unit) && !['trashed', 'wontdo'].includes(task.status))
   }
 
-  function filterStatus(status: string) {
+  function filterStatus(status: Status) {
     return tasks.value.filter(task => task.status === status)
   }
 
-  function sortTasks(criteria: string) {
+  function sortTasks(criteria: 'date' | 'priority') {
     return [...tasks.value].sort((a, b) => {
       if (criteria === 'date')
         return new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()

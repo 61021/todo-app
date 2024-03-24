@@ -160,7 +160,7 @@ watch(isSwiping, (val) => {
             i-ph-magnifying-glass-duotone
             text="xl dark:white slate900 hover:primary500"
             class="duration-300"
-            @click="toggleSearch"
+            @click="toggleSearch()"
           />
         </VFlexCol>
         <VThemeSwitcher />

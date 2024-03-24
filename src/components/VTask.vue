@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
+import { useSound } from '@vueuse/sound'
 import type { Task } from '~/types/main'
+
+import trashSound from '~/assets/sounds/trash.mp3'
 
 const props = defineProps<{
   task: Task
@@ -22,6 +25,8 @@ const priorityClasses = {
 }
 
 const isDone = computed(() => props.task.status === 'done')
+
+const { play } = useSound(trashSound)
 </script>
 
 <template>
@@ -40,10 +45,7 @@ const isDone = computed(() => props.task.status === 'done')
       class="wfull"
     >
       <VCheckbox
-        v-if="
-          task.status !== 'wontdo'
-            && task.status !== 'trashed'
-        "
+        v-if="task.status !== 'wontdo' && task.status !== 'trashed'"
 
         :model-value="isDone"
         @update:model-value="() => toggleCompleteTask(task.id)"
@@ -82,7 +84,7 @@ const isDone = computed(() => props.task.status === 'done')
     <VFlexRow :gap="2" items="center">
       <span
         text="xs slate400 "
-        class="min-w-max hidden md:flex duration-300 group-hover:opacity-100 md:opacity-0"
+        class="hidden min-w-max duration-300 md:flex group-hover:opacity-100 md:opacity-0"
         v-text="dayjs(task.creationDate).format('HH:mm A - YYYY/MM/DD')"
       />
 
@@ -98,7 +100,7 @@ const isDone = computed(() => props.task.status === 'done')
         i-ph-trash-duotone
         class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:red500 dark:hover:red500"
-        @click="toggleTrashTask(task.id)"
+        @click="toggleTrashTask(task.id), play()"
       />
 
       <button
@@ -106,7 +108,7 @@ const isDone = computed(() => props.task.status === 'done')
         i-ph-trash-duotone
         class="duration-300 group-hover:opacity-100 md:opacity-0"
         text="xl slate500 dark:slate400 hover:red-500 dark:hover:red-500"
-        @click="deleteTask(task.id)"
+        @click="deleteTask(task.id), play()"
       />
 
       <i
