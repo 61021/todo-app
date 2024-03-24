@@ -107,6 +107,8 @@ const isSidebarVisible = ref(true)
 watchImmediate(isMobile, (val) => {
   if (val)
     isSidebarVisible.value = false
+  else
+    isSidebarVisible.value = true
 })
 
 const sidebar = ref<HTMLElement | null>(null)

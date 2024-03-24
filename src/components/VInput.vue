@@ -45,6 +45,10 @@ onStartTyping(() => {
   if (input.value)
     input.value.focus()
 })
+
+const { width } = useWindowSize()
+
+const isMobile = computed(() => width.value < 768)
 </script>
 
 <template>
@@ -53,7 +57,7 @@ onStartTyping(() => {
     bg="dark:slate800 slate200"
     border="rounded-2xl"
     items="center wfull"
-    class="group wfull min-h-12 max-h-12"
+    class="group max-h-12 min-h-12 wfull"
   >
     <input
       ref="input"
@@ -63,7 +67,7 @@ onStartTyping(() => {
       class="wfull overflow-hidden"
       autofocus
       text="dark:white slate900 placeholder:slate500"
-      placeholder="Add a task... press enter to save."
+      :placeholder="isMobile ? 'Add a task...' : 'Add a task... press enter to save.'"
       bg="transparent"
       outline="none active:none"
       @keyup.enter="() => handleEnter()"
