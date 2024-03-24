@@ -77,13 +77,7 @@ const routes = ref<RouteItem[]>([
 
 const currentRoute = useRoute()
 
-function iconActiveClasses(item: RouteItem): string {
-  return currentRoute.path === item.path
-    ? `dark:text-white text-slate900 ${item.icon.active}`
-    : `dark:text-slate400 text-slate-400 ${item.icon.inactive}`
-}
-
-function textActiveClasses(item: RouteItem): string {
+function activeClasses(item: RouteItem): string {
   return currentRoute.path === item.path
     ? 'dark:text-white text-slate900'
     : 'dark:text-slate400 text-slate-400'
@@ -201,13 +195,15 @@ watch(isSwiping, (val) => {
             <VFlexRow :gap="2">
               <i
                 text="xl"
-                :class="iconActiveClasses(route)"
+                :class="[
+                  currentRoute.path === route.path ? route.icon.active : route.icon.inactive,
+                  activeClasses(route),
+                ]"
                 class="duration-300"
               />
 
               <span
-                :class="textActiveClasses(route)"
-                text="dark:white darkslate900"
+                :class="activeClasses(route)"
                 class="duration-300"
                 v-text="route.name"
               />
