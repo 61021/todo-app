@@ -108,6 +108,20 @@ watchImmediate(isMobile, (val) => {
   if (val)
     isSidebarVisible.value = false
 })
+
+const sidebar = ref<HTMLElement | null>(null)
+
+onClickOutside(sidebar, () => {
+  if (isMobile.value)
+    isSidebarVisible.value = false
+})
+
+const { isSwiping, direction } = useSwipe(sidebar)
+
+watch(isSwiping, (val) => {
+  if (val)
+    isSidebarVisible.value = direction.value === 'right'
+})
 </script>
 
 <template>
@@ -121,12 +135,13 @@ watchImmediate(isMobile, (val) => {
   <button
     i-ph-list
     text="dark:white slate900 2xl"
-    class="fixed right-4 top-4 z5 flex md:hidden"
+    class="fixed left-4 top-4 z4 flex md:hidden"
     @click="isSidebarVisible = !isSidebarVisible"
   />
   <Transition name="slide">
     <aside
       v-if="isSidebarVisible"
+      ref="sidebar"
       flex="~"
       class="fixed z4 hfull md:relative"
     >

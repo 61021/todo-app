@@ -82,7 +82,7 @@ const isDone = computed(() => props.task.status === 'done')
     <VFlexRow :gap="2" items="center">
       <span
         text="xs slate400 "
-        class="min-w-max duration-300 group-hover:opacity-100 md:opacity-0"
+        class="min-w-max hidden md:flex duration-300 group-hover:opacity-100 md:opacity-0"
         v-text="dayjs(task.creationDate).format('HH:mm A - YYYY/MM/DD')"
       />
 
